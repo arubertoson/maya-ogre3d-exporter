@@ -121,6 +121,7 @@
 #include "Ogre.h"
 #include "OgreDefaultHardwareBufferManager.h"
 #include "OgreHardwareVertexBuffer.h"
+#include "OgreLodStrategyManager.h"
 
 #pragma warning (disable : 4018)
 

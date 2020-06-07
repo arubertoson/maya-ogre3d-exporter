@@ -61,8 +61,14 @@ namespace OgreMayaExporter
 					delete pMat;
 				}
 			}
-			if (!found)
+			if (!found) {
 				m_materials.push_back(pMat);
+
+                // Ensure material name is in material resource manager as well
+                Ogre::MaterialManager::getSingleton().create(
+                    pMat->name().asChar(),
+                    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+			}
 		}
 		//get material
 		Material* getMaterial(const MString& name){

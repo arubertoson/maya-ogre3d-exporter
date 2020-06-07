@@ -80,6 +80,15 @@ namespace OgreMayaExporter
 	// Execute the command
 	MStatus OgreExporter::doIt(const MArgList& args)
 	{
+        // Init Ogre Environment
+		Ogre::LogManager logMgr;
+		Ogre::ResourceGroupManager rgm;
+		Ogre::MeshManager meshMgr;
+		Ogre::SkeletonManager skelMgr;
+		Ogre::MaterialManager matMgr;
+		Ogre::DefaultHardwareBufferManager hardwareBufMgr;
+		Ogre::LodStrategyManager lodMgr;
+		
 		// clean up
 		delete m_pMesh;
 		delete m_pMaterialSet;
@@ -994,17 +1003,9 @@ namespace OgreMayaExporter
 	********************************************************************************************************/
 	MStatus OgreExporter::writeOgreData()
 	{
-		// Create singletons		
-		Ogre::LogManager logMgr;
-		Ogre::ResourceGroupManager rgm;
-		Ogre::MeshManager meshMgr;
-		Ogre::SkeletonManager skelMgr;
-		Ogre::MaterialManager matMgr;
-		Ogre::DefaultHardwareBufferManager hardwareBufMgr;
-		Ogre::LodStrategyManager lodMgr;
-		
 		// Create a log
-		logMgr.createLog("ogreMayaExporter.log", true);
+        Ogre::LogManager::getSingleton().createLog("ogreMayaExporter.log", true)
+
 		// Write mesh binary
 		if (m_params.exportMesh)
 		{
